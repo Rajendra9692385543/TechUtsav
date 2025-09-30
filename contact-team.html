@@ -7,8 +7,45 @@
   <link rel="icon" href="static/favicon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+    main {
+      flex: 1;
+      position: relative;
+      z-index: 10;
+    }
+    header, nav, footer {
+      position: relative;
+      z-index: 10;
+    }
+    /* Background Video */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none; /* So video does not block clicks */
+    }
+  </style>
 </head>
 <body class="bg-gray-100 font-sans min-h-screen flex flex-col">
+
+  <!-- Background Video -->
+  <video autoplay muted loop class="background-video">
+    <source src="static/bg-video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
   <!-- Header -->
   <header class="bg-blue-700 text-white shadow-md flex flex-col sm:flex-row items-center justify-start px-6 py-4">
@@ -85,10 +122,10 @@
 
   <!-- JS: Dynamic Navbar and Load Coordinators -->
   <script>
-    // Dynamic Navbar - only show Home if not on index.html
+    // Dynamic Navbar
     const navbar = document.getElementById('navbar');
     const currentPage = window.location.pathname.split('/').pop();
-    
+
     if(currentPage !== 'index.html' && currentPage !== '') {
       const homeLink = document.createElement('a');
       homeLink.href = 'index.html';
@@ -97,7 +134,6 @@
       navbar.appendChild(homeLink);
     }
 
-    // Show other nav links except current page
     const navLinks = [
       { label: 'Event Schedule', href: 'time-venue.html' },
       { label: 'Contact Team', href: 'contact-team.html' }

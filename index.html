@@ -7,20 +7,48 @@
   <link rel="icon" href="static/favicon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    /* Make footer stick to bottom */
     html, body {
       height: 100%;
     }
     body {
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
     }
     main {
       flex: 1;
+      position: relative;
+      z-index: 10;
+    }
+    header, nav {
+      position: relative;
+      z-index: 10;
+    }
+    footer {
+      position: relative;
+      z-index: 10;
+    }
+    /* Background Video */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none; /* So video does not block clicks */
     }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
+
+  <!-- Background Video -->
+  <video autoplay muted loop class="background-video">
+    <source src="static/bg-video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
   <!-- Header -->
   <header class="bg-blue-700 text-white shadow-md flex flex-col sm:flex-row items-center justify-start px-6 py-4">
@@ -32,7 +60,7 @@
     </div>
   </header>
 
-  <!-- Navbar below header -->
+  <!-- Navbar -->
   <nav class="bg-white shadow-md px-6 py-3 flex justify-end space-x-4">
     <a href="time-venue.html" class="flex items-center text-blue-700 font-semibold hover:text-blue-900">
       <!-- Calendar Icon -->
