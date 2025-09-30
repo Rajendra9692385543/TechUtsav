@@ -19,14 +19,7 @@
   </header>
 
   <!-- Navbar -->
-  <nav class="bg-white shadow-md px-6 py-3 flex justify-end space-x-4">
-    <a href="time-venue.html" class="flex items-center text-blue-700 font-semibold hover:text-blue-900">
-      Event Schedule
-    </a>
-    <a href="contact-team.html" class="flex items-center text-blue-700 font-semibold hover:text-blue-900">
-      Contact Team
-    </a>
-  </nav>
+  <nav class="bg-white shadow-md px-6 py-3 flex justify-end space-x-4" id="navbar"></nav>
 
   <!-- Organizing Team Cards -->
   <main class="flex-1 max-w-6xl mx-auto p-6">
@@ -89,8 +82,36 @@
     <p>&copy; 2025 Department of CSE, Centurion University | TechUtsav 2025</p>
   </footer>
 
-  <!-- JS to load coordinators from Sheet 2 -->
+  <!-- JS: Dynamic Navbar and Load Coordinators -->
   <script>
+    // Dynamic Navbar - only show Home if not on index.html
+    const navbar = document.getElementById('navbar');
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    if(currentPage !== 'index.html' && currentPage !== '') {
+      const homeLink = document.createElement('a');
+      homeLink.href = 'index.html';
+      homeLink.textContent = 'Home';
+      homeLink.className = 'flex items-center text-blue-700 font-semibold hover:text-blue-900';
+      navbar.appendChild(homeLink);
+    }
+
+    // Show other nav links except current page
+    const navLinks = [
+      { label: 'Event Schedule', href: 'time-venue.html' },
+      { label: 'Contact Team', href: 'contact-team.html' }
+    ];
+    navLinks.forEach(link => {
+      if(link.href !== currentPage) {
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.textContent = link.label;
+        a.className = 'flex items-center text-blue-700 font-semibold hover:text-blue-900';
+        navbar.appendChild(a);
+      }
+    });
+
+    // Load Event Coordinators from Sheet 2
     async function loadCoordinators() {
       try {
         const response = await fetch('event_schedule.xlsx');
@@ -134,7 +155,6 @@
 
           tbody.appendChild(tr);
         });
-
       } catch(err) {
         console.error("Failed to load Sheet 2:", err);
       }
