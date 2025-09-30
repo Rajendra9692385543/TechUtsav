@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechUtsav 2025 | Event Schedule</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white shadow-md flex flex-col sm:flex-row items-center justify-start px-6 py-4">
+    <img src="static/Centurion_University_Logo.png" alt="CUTM Logo" class="h-16 sm:mr-4 mb-2 sm:mb-0">
+    <div class="text-center sm:text-left">
+      <h1 class="text-3xl font-bold">TechUtsav 2025</h1>
+      <p class="mt-1 text-lg">Event Schedule | 24th & 25th October</p>
+    </div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md px-6 py-3 flex justify-end space-x-4">
+    <a href="event_schedule.html" class="flex items-center text-blue-700 font-semibold hover:text-blue-900">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      Event Schedule
+    </a>
+    <a href="contact-team.html" class="flex items-center text-blue-700 font-semibold hover:text-blue-900">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20h6v-2a4 4 0 00-4-4H9M12 12a4 4 0 100-8 4 4 0 000 8z" />
+      </svg>
+      Contact Team
+    </a>
+  </nav>
+
+  <!-- Event Schedule Table -->
+  <main class="flex-1 max-w-6xl mx-auto p-6">
+    <h2 class="text-2xl font-bold mb-4 text-center">TechUtsav 2025 Event Schedule</h2>
+    <div class="overflow-x-auto">
+      <table id="scheduleTable" class="min-w-full bg-white rounded-lg shadow-md hidden">
+        <thead class="bg-blue-700 text-white">
+          <tr>
+            <th class="py-2 px-4 text-left">Day</th>
+            <th class="py-2 px-4 text-left">Event Name</th>
+            <th class="py-2 px-4 text-left">Date</th>
+            <th class="py-2 px-4 text-left">Starting Time</th>
+            <th class="py-2 px-4 text-left">Venue</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700" id="tableBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+    <p>&copy; 2025 Department of CSE, Centurion University | TechUtsav 2025</p>
+  </footer>
+
+  <!-- JS to load Excel -->
+  <script>
+    async function loadExcel() {
+      try {
+        const response = await fetch('event_schedule.xlsx');
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const data = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+
+        const tableBody = document.getElementById('tableBody');
+        let lastDay = null;
+
+        data.forEach(row => {
+          // Skip completely empty rows
+          if(Object.values(row).every(cell => cell === null || cell === undefined || cell === "")) return;
+
+          const tr = document.createElement('tr');
+          tr.classList.add('border-b','hover:bg-gray-100');
+
+          // Merge repeated Day values
+          const dayTd = document.createElement('td');
+          dayTd.classList.add('py-2','px-4','font-semibold');
+          if(row['Day'] && row['Day'] !== lastDay){
+            dayTd.innerText = row['Day'];
+            lastDay = row['Day'];
+          } else {
+            dayTd.innerText = "";
+          }
+          tr.appendChild(dayTd);
+
+          const eventTd = document.createElement('td');
+          eventTd.classList.add('py-2','px-4');
+          eventTd.innerText = row['Event Name'];
+          tr.appendChild(eventTd);
+
+          const dateTd = document.createElement('td');
+          dateTd.classList.add('py-2','px-4');
+          dateTd.innerText = row['Date'];
+          tr.appendChild(dateTd);
+
+          const timeTd = document.createElement('td');
+          timeTd.classList.add('py-2','px-4');
+          timeTd.innerText = row['Starting Time'];
+          tr.appendChild(timeTd);
+
+          const venueTd = document.createElement('td');
+          venueTd.classList.add('py-2','px-4');
+          venueTd.innerHTML = row['Venue'].replace(/\n/g,"<br>");
+          tr.appendChild(venueTd);
+
+          tableBody.appendChild(tr);
+        });
+
+        document.getElementById('scheduleTable').classList.remove('hidden');
+      } catch (err) {
+        console.error("Failed to load Excel file:", err);
+        alert("Could not load event_schedule.xlsx. Make sure the file is in the project root and you are serving via HTTP/HTTPS.");
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadExcel);
+  </script>
+
+</body>
+</html>
