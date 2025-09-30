@@ -58,8 +58,29 @@
     <p>&copy; 2025 Department of CSE, Centurion University | TechUtsav 2025</p>
   </footer>
 
-  <!-- JS to load Excel -->
+  <!-- JS to load Excel with proper date/time -->
   <script>
+    // Convert Excel date (number) to DD-MM-YYYY
+    function formatExcelDate(excelDate) {
+      if (typeof excelDate === 'number') {
+        const dateObj = XLSX.SSF.parse_date_code(excelDate);
+        if (!dateObj) return excelDate;
+        return `${String(dateObj.d).padStart(2,'0')}-${String(dateObj.m).padStart(2,'0')}-${dateObj.y}`;
+      }
+      return excelDate;
+    }
+
+    // Convert Excel time (fraction) to HH:MM
+    function formatExcelTime(excelTime) {
+      if (typeof excelTime === 'number') {
+        const totalMinutes = Math.round(excelTime * 24 * 60);
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        return `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}`;
+      }
+      return excelTime;
+    }
+
     async function loadExcel() {
       try {
         const response = await fetch('event_schedule.xlsx');
@@ -89,21 +110,25 @@
           }
           tr.appendChild(dayTd);
 
+          // Event Name
           const eventTd = document.createElement('td');
           eventTd.classList.add('py-2','px-4');
           eventTd.innerText = row['Event Name'];
           tr.appendChild(eventTd);
 
+          // Date (converted)
           const dateTd = document.createElement('td');
           dateTd.classList.add('py-2','px-4');
-          dateTd.innerText = row['Date'];
+          dateTd.innerText = formatExcelDate(row['Date']);
           tr.appendChild(dateTd);
 
+          // Starting Time (converted)
           const timeTd = document.createElement('td');
           timeTd.classList.add('py-2','px-4');
-          timeTd.innerText = row['Starting Time'];
+          timeTd.innerText = formatExcelTime(row['Starting Time']);
           tr.appendChild(timeTd);
 
+          // Venue
           const venueTd = document.createElement('td');
           venueTd.classList.add('py-2','px-4');
           venueTd.innerHTML = row['Venue'].replace(/\n/g,"<br>");
