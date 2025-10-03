@@ -59,55 +59,76 @@
   <!-- Navbar -->
   <nav class="bg-white shadow-md px-6 py-3 flex justify-end space-x-4" id="navbar"></nav>
 
-  <!-- Organizing Team Cards -->
+  <!-- Organizing Team Section -->
   <main class="flex-1 max-w-6xl mx-auto p-6">
-    <!-- Changed color to white -->
     <h2 class="text-2xl font-bold mb-6 text-center text-white">Organizing Team</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-      <!-- Rajendra Card -->
-      <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-        <p class="text-xl font-semibold">Rajendra Das</p>
-        <p class="text-gray-600 mb-4">Top Coordinator</p>
-        <a href="tel:+919692385543" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l2 7-1 1-3-3-1-5z" />
-          </svg>
-          Call
-        </a>
-      </div>
-      <!-- Aditya Card -->
-      <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-        <p class="text-xl font-semibold">Aditya Kumar Singh</p>
-        <p class="text-gray-600 mb-4">Top Coordinator</p>
-        <a href="tel:+919523636047" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l2 7-1 1-3-3-1-5z" />
-          </svg>
-          Call
-        </a>
-      </div>
-      <!-- Pavan Card -->
-      <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
-        <p class="text-xl font-semibold">Pavan Patro</p>
-        <p class="text-gray-600 mb-4">Top Coordinator</p>
-        <a href="tel:+916370515550" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l2 7-1 1-3-3-1-5z" />
-          </svg>
-          Call
-        </a>
-      </div>
+
+    <!-- Organized By Card -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8 max-w-lg mx-auto text-center">
+      <h3 class="text-lg font-semibold text-gray-800">Organized by</h3>
+      <p class="text-gray-600 mt-2">Department of CSE, BCA, MCA</p>
+    </div>
+
+    <!-- Top Coordinators Table -->
+    <div class="overflow-x-auto mb-10">
+      <table class="min-w-full bg-white rounded-lg shadow-md table-auto border-collapse border border-gray-300">
+        <thead class="bg-blue-700 text-white">
+          <tr>
+            <th class="py-2 px-4 border">Name</th>
+            <th class="py-2 px-4 border">Role</th>
+            <th class="py-2 px-4 border">Contact</th>
+            <th class="py-2 px-4 border">Call</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <tr class="border-b">
+            <td class="py-2 px-4 border">Rajendra Das</td>
+            <td class="py-2 px-4 border">Top Coordinator</td>
+            <td class="py-2 px-4 border">+91 9692385543</td>
+            <td class="py-2 px-4 border">
+              <a href="tel:+919692385543" class="bg-blue-700 text-white px-3 py-1 rounded hover:bg-blue-800 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l2 7-1 1-3-3-1-5z" />
+                </svg>Call
+              </a>
+            </td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4 border">Aditya Kumar Singh</td>
+            <td class="py-2 px-4 border">Top Coordinator</td>
+            <td class="py-2 px-4 border">+91 9523636047</td>
+            <td class="py-2 px-4 border">
+              <a href="tel:+919523636047" class="bg-blue-700 text-white px-3 py-1 rounded hover:bg-blue-800 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l2 7-1 1-3-3-1-5z" />
+                </svg>Call
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td class="py-2 px-4 border">Pavan Patro</td>
+            <td class="py-2 px-4 border">Top Coordinator</td>
+            <td class="py-2 px-4 border">+91 6370515550</td>
+            <td class="py-2 px-4 border">
+              <a href="tel:+916370515550" class="bg-blue-700 text-white px-3 py-1 rounded hover:bg-blue-800 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2l2 7-1 1-3-3-1-5z" />
+                </svg>Call
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- Event Coordinators Table -->
-    <!-- Changed color to white -->
     <h2 class="text-2xl font-bold mb-4 text-center text-white">Event Coordinators</h2>
     <div class="overflow-x-auto bg-white rounded-lg shadow p-4">
       <table class="min-w-full table-auto border-collapse border border-gray-300" id="coordinatorTable">
         <thead class="bg-blue-700 text-white">
           <tr>
             <th class="py-2 px-4 border">Event Name</th>
-            <th class="py-2 px-4 border">Faculty Coordinator</th> <!-- New column -->
+            <th class="py-2 px-4 border">Faculty Coordinator</th>
             <th class="py-2 px-4 border">Student Coordinator</th>
             <th class="py-2 px-4 border">Contact</th>
             <th class="py-2 px-4 border">Call</th>
@@ -172,7 +193,7 @@
           eventTd.innerText = row['Event Name'] || "";
           tr.appendChild(eventTd);
 
-          const facultyTd = document.createElement('td'); // New column
+          const facultyTd = document.createElement('td');
           facultyTd.classList.add('py-2','px-4','border');
           facultyTd.innerText = row['Faculty Coordinator'] || "";
           tr.appendChild(facultyTd);
