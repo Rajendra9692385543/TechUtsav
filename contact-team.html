@@ -35,7 +35,7 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
-      pointer-events: none; /* So video does not block clicks */
+      pointer-events: none;
     }
   </style>
 </head>
@@ -61,7 +61,8 @@
 
   <!-- Organizing Team Cards -->
   <main class="flex-1 max-w-6xl mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-6 text-center">Organizing Team</h2>
+    <!-- Changed color to white -->
+    <h2 class="text-2xl font-bold mb-6 text-center text-white">Organizing Team</h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
       <!-- Rajendra Card -->
       <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
@@ -99,12 +100,14 @@
     </div>
 
     <!-- Event Coordinators Table -->
-    <h2 class="text-2xl font-bold mb-4 text-center">Event Coordinators</h2>
+    <!-- Changed color to white -->
+    <h2 class="text-2xl font-bold mb-4 text-center text-white">Event Coordinators</h2>
     <div class="overflow-x-auto bg-white rounded-lg shadow p-4">
       <table class="min-w-full table-auto border-collapse border border-gray-300" id="coordinatorTable">
         <thead class="bg-blue-700 text-white">
           <tr>
             <th class="py-2 px-4 border">Event Name</th>
+            <th class="py-2 px-4 border">Faculty Coordinator</th> <!-- New column -->
             <th class="py-2 px-4 border">Student Coordinator</th>
             <th class="py-2 px-4 border">Contact</th>
             <th class="py-2 px-4 border">Call</th>
@@ -168,6 +171,11 @@
           eventTd.classList.add('py-2','px-4','border');
           eventTd.innerText = row['Event Name'] || "";
           tr.appendChild(eventTd);
+
+          const facultyTd = document.createElement('td'); // New column
+          facultyTd.classList.add('py-2','px-4','border');
+          facultyTd.innerText = row['Faculty Coordinator'] || "";
+          tr.appendChild(facultyTd);
 
           const nameTd = document.createElement('td');
           nameTd.classList.add('py-2','px-4','border');
