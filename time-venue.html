@@ -63,18 +63,19 @@
   <main class="flex-1 max-w-6xl mx-auto p-6">
     <h2 class="text-2xl font-bold mb-4 text-center">TechUtsav 2025 Event Schedule</h2>
     <div class="overflow-x-auto">
-      <table id="scheduleTable" class="min-w-full bg-white rounded-lg shadow-md hidden">
-        <thead class="bg-blue-700 text-white">
-          <tr>
-            <th class="py-2 px-4 text-left">Day</th>
-            <th class="py-2 px-4 text-left">Event Name</th>
-            <th class="py-2 px-4 text-left">Date</th>
-            <th class="py-2 px-4 text-left">Starting Time</th>
-            <th class="py-2 px-4 text-left">Venue</th>
-          </tr>
-        </thead>
-        <tbody class="text-gray-700" id="tableBody"></tbody>
-      </table>
+      <table id="scheduleTable" class="min-w-full bg-white rounded-lg shadow-md hidden table-fixed">
+  <thead class="bg-blue-700 text-white">
+    <tr>
+      <th class="py-2 px-4 text-left w-1/12">Day</th>
+      <th class="py-2 px-4 text-left w-3/12">Event Name</th>
+      <th class="py-2 px-4 text-left w-2/12">Date</th>
+      <th class="py-2 px-4 text-left w-2/12">Starting Time</th>
+      <th class="py-2 px-4 text-left w-4/12">Venue (Tentative)</th>
+    </tr>
+  </thead>
+  <tbody class="text-gray-700" id="tableBody"></tbody>
+</table>
+
     </div>
   </main>
 
